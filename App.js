@@ -1,8 +1,16 @@
+import "react-native-gesture-handler";
+import React from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import Navigation from "./Navigation";
+import Navigation from "./source/navigation/Navigation";
 
 export default function App() {
   console.log("estamos en react native");
-  return <Navigation></Navigation>;
+  return (
+    <NavigationContainer>
+      <Navigation></Navigation>
+    </NavigationContainer>
+  );
 }
