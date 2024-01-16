@@ -1,19 +1,19 @@
 import { View, Text } from "react-native";
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Favorite from "../screen/Favorite";
+import React from "react";
+import AccountScreen from "../screen/Account";
 
 const Stack = createNativeStackNavigator();
-const FavoriteNavigation = () => {
+const AccountNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Favorite"
-        component={Favorite}
-        options={{ headerShown: true, headerTitle: "Favoritos" }}
+        name="Account"
+        component={AccountScreen}
+        options={{ title: "Mi cuenta" }}
       ></Stack.Screen>
     </Stack.Navigator>
   );
 };
 
-export default FavoriteNavigation;
+export default AccountNavigation;

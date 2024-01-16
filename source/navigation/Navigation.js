@@ -1,10 +1,12 @@
 import React from "react";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import PokedexScreen from "../screen/Pokedex";
+
 import FavoriteNavigation from "./FavoriteNavigation";
 import AccountScreen from "../screen/Account";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import PokedexNavigation from "./PokedexNavigation";
+import AccountNavigation from "./AccountNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,18 +25,23 @@ const Navigation = () => {
         }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Pokedex"
-        component={PokedexScreen}
-        options={{ tabBarLabel: "", tabBarIcon: () => renderPokeball() }}
+        name="PokedexNavigation"
+        component={PokedexNavigation}
+        options={{
+          tabBarLabel: "",
+          tabBarIcon: () => renderPokeball(),
+          headerShown: false,
+        }}
       ></Tab.Screen>
       <Tab.Screen
-        name="Account"
-        component={AccountScreen}
+        name="AccountNavigation"
+        component={AccountNavigation}
         options={{
           tabBarLabel: "Mi Cuenta",
           tabBarIcon: ({ color, size }) => (
             <Icon name="user" color={color} size={size}></Icon>
           ),
+          headerShown: false,
         }}
       ></Tab.Screen>
     </Tab.Navigator>
