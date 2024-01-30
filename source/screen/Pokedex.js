@@ -4,17 +4,21 @@ import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
 
 const Pokedex = () => {
-  const [pokemons, setPokemons] = useState([]);
-  // console.log("pokemon --->", pokemons);
+  /*const [pokemons, setPokemons] = useState([]);
+  const [nextUlr, setNextUrl] = useState(null);
+
+  console.log("volvio a recargarse --->");
   useEffect(() => {
     (async () => {
       await loadPokemons();
+      console.log("paso por el useEffect");
     })();
   }, []);
 
   const loadPokemons = async () => {
     try {
-      const response = await getPokemonsApi();
+      const response = await getPokemonsApi(nextUlr);
+      //console.log("response: ", response);
       const pokemonsArray = await Promise.all(
         response.results.map(async (item) => {
           const responseResults = await getPokemonDetailsByUrlApi(item.url);
@@ -33,6 +37,47 @@ const Pokedex = () => {
       );
 
       setPokemons([...pokemons, ...pokemonsArray]);
+
+      setNextUrl(response.next);
+    } catch (error) {
+      console.error(error);
+    }
+  };*/
+
+  const [pokemons, setPokemons] = useState([]);
+  const [nextUlr, setNextUrl] = useState(null);
+
+  console.log("volvio a recargarse --->");
+  useEffect(() => {
+    (async () => {
+      await loadPokemons();
+      console.log("paso por el useEffect");
+    })();
+  }, []);
+
+  const loadPokemons = async () => {
+    try {
+      const response = await getPokemonsApi(nextUlr);
+
+      const pokemonsArray = [];
+
+      for (const item of response.results) {
+        const responseResults = await getPokemonDetailsByUrlApi(item.url);
+
+        const pokemonDetail = {
+          id: responseResults.id,
+          name: responseResults.name,
+          type: await responseResults.types[0].type.name,
+          order: responseResults.order,
+          imagen: await responseResults.sprites.other["official-artwork"]
+            .front_default,
+        };
+
+        pokemonsArray.push(pokemonDetail);
+      }
+
+      setPokemons([...pokemons, ...pokemonsArray]);
+      setNextUrl(response.next);
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +85,11 @@ const Pokedex = () => {
 
   return (
     <View>
-      <PokemonList pokemons={pokemons}></PokemonList>
+      <PokemonList
+        pokemons={pokemons}
+        loadPokemons={loadPokemons}
+        isNext={nextUlr}
+      ></PokemonList>
     </View>
   );
 };
