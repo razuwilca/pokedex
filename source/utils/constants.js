@@ -1,5 +1,7 @@
 export const API_HOST = "https://pokeapi.co/api/v2";
 
+export const FAVORITE_STORAGE = "favorites";
+
 export const COLOURS_POKEMON = {
   normal: "#A8A77A",
   fire: "#EE8130",

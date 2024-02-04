@@ -6,7 +6,7 @@ const Stats = (props) => {
   const { stats } = props;
 
   const barStyles = (num) => {
-    console.log("num: ", num);
+    //console.log("num: ", num);
     const color = num > 49 ? "#00ac17" : "#ff3e3e";
     return {
       backgroundColor: color,
@@ -41,6 +41,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
     paddingBottom: 20,
+    marginBottom: 30,
   },
   title: {
     fontWeight: "bold",

@@ -47,11 +47,11 @@ const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
   const [nextUlr, setNextUrl] = useState(null);
 
-  console.log("volvio a recargarse --->");
+  //console.log("volvio a recargarse --->");
   useEffect(() => {
     (async () => {
       await loadPokemons();
-      console.log("paso por el useEffect");
+      //console.log("paso por el useEffect");
     })();
   }, []);
 

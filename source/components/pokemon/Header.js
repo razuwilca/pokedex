@@ -9,7 +9,7 @@ const Header = (props) => {
   const color = getColorByPokemon(type);
 
   const bgStyle = [{ backgroundColor: color, ...styles.bg }];
-  console.log(bgStyle);
+  //console.log(bgStyle);
   return (
     <>
       <View style={bgStyle}></View>
